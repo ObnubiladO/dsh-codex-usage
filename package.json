@@ -1,6 +1,6 @@
 {
   "name": "dsh-codex-usage",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Remaining five-hour and weekly Codex usage for dsh-codex-provider.",
   "type": "module",
   "main": "lib/index.js",
@@ -12,7 +12,7 @@
   "dsh": {
     "bundle": { "patch": "./cordis.patch.yml" },
     "client": {
-      "inject": ["@deepseek-ai/dsh-client-connection", "@deepseek-ai/dsh-client-locale", "@deepseek-ai/dsh-client-runtime", "@deepseek-ai/dsh-client-ui-slots", "@deepseek-ai/dsh-client-ui-sidebar", "@deepseek-ai/dsh-client-ui-settings"],
+      "inject": ["@deepseek-ai/dsh-client-connection", "@deepseek-ai/dsh-client-locale", "@deepseek-ai/dsh-client-runtime", "@deepseek-ai/dsh-client-ui-slots", "@deepseek-ai/dsh-client-ui-sidebar", "@deepseek-ai/dsh-client-ui-settings", "@deepseek-ai/dsh-client-ui-session", "@deepseek-ai/dsh-client-ui-model-selection"],
       "platform": "web"
     }
   },

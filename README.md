@@ -7,7 +7,7 @@ A read-only companion to `dsh-codex-provider`. Displays account-wide **remaining
 Requires `dsh-codex-provider` installed and signed in on the same `web` profile. Tested with DeepDive `0.1.12-astra.1` (DSH `0.1.3-alpha.1`) and provider `0.1.0`.
 
 ```sh
-dsh plugin --profile web add /absolute/path/to/dsh-codex-usage-0.1.0.tgz
+dsh plugin --profile web add /absolute/path/to/dsh-codex-usage-0.1.1.tgz
 ```
 
 Restart DeepDive after installation if the new sidebar entry does not appear. A desktop-only installation can use its bundled Node executable and `@deepseek-ai/dsh/lib/bin.js` to run the same plugin command; no new DeepDive build is needed.
@@ -23,7 +23,8 @@ dsh plugin --profile web remove dsh-codex-usage
 - Remaining percentage is `100 − used_percent`, clamped to 0–100.
 - Windows are matched by their actual duration: 18,000 seconds for five hours and 604,800 seconds for a week. A weekly-only primary window is not mislabeled as five hours.
 - A dash means a window is missing, invalid, expired, or older than 90 seconds at render time. It does not mean 0% or 100%.
-- The sidebar shows the main Codex allowance. The Settings panel shows every additional allowance separately. These are account allowances, not session token counts or a promise that every model is available.
+- The sidebar follows the selected session's model: `openai-codex/gpt-5.3-codex-spark` shows the separate Spark allowance (`codex_bengalfox`); other models, or no selected session, show the main Codex allowance. Its label identifies the allowance, including in the collapsed sidebar. Switching models or sessions updates the indicator immediately through DSH's shared model-selection store. A missing Spark allowance displays dashes, never the main allowance as a fallback.
+- The Settings panel shows every allowance separately. These are account allowances, not session token counts or a promise that every model is available.
 - Reset timestamps use the browser's local timezone. The backend caches reads for 30 seconds; manual refresh can return that recent cached reading. HTTP 429 responses pause upstream reads for at least one minute.
 - Network and sign-in errors clear the displayed numbers. The provider remains responsible for sign-in and access-token refresh; the companion retries automatically after the provider updates its credential.
 
