@@ -1,6 +1,6 @@
 {
   "name": "dsh-codex-usage",
-  "version": "0.1.2-preview.6",
+  "version": "0.1.2-preview.7",
   "description": "Remaining five-hour and weekly Codex usage for dsh-codex-provider.",
   "type": "module",
   "main": "lib/index.js",
