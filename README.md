@@ -4,12 +4,12 @@ A read-only companion to `dsh-codex-provider`. Displays account-wide **remaining
 
 ## Install
 
-Download [the installable plugin package](https://github.com/ObnubiladO/dsh-codex-usage/releases/download/v0.1.2-preview.6/dsh-codex-usage-0.1.2-preview.6.tgz) from the [preview release](https://github.com/ObnubiladO/dsh-codex-usage/releases/tag/v0.1.2-preview.6).
+Download [the installable plugin package](https://github.com/ObnubiladO/dsh-codex-usage/releases/download/v0.1.2-preview.8/dsh-codex-usage-0.1.2-preview.8.tgz) from the [preview release](https://github.com/ObnubiladO/dsh-codex-usage/releases/tag/v0.1.2-preview.8).
 
-Requires `dsh-codex-provider` installed and signed in on the same `web` profile. Tested with DeepDive `0.1.12-astra.1` (DSH `0.1.3-alpha.1`) and provider `0.1.0`.
+Requires `dsh-codex-provider` installed and signed in on the same `web` profile. Tested with DeepDive `0.1.18` (DSH `0.1.7-alpha.1`) and provider `0.1.0`. DSH 0.1.7 projects a plugin's Config schema into settings forms and no longer exposes the earlier `settings.register` namespace API, so this release declares the sidebar height as its own Config field and requires that harness generation.
 
 ```sh
-dsh plugin --profile web add /absolute/path/to/dsh-codex-usage-0.1.2-preview.6.tgz
+dsh plugin --profile web add /absolute/path/to/dsh-codex-usage-0.1.2-preview.8.tgz
 ```
 
 Restart DeepDive after installation if the new sidebar entry does not appear. A desktop-only installation can use its bundled Node executable and `@deepseek-ai/dsh/lib/bin.js` to run the same plugin command; no new DeepDive build is needed.
@@ -34,7 +34,7 @@ The expanded sidebar uses large percentages, labeled progress bars, and relative
 
 ## Credentials and transport
 
-The host resolves `OPENAI_CODEX_API_KEY` through DSH's existing credentials service and reads `https://chatgpt.com/backend-api/wham/usage`, scoped by the token's account claim. It never reads or writes refresh tokens, changes model settings, calls an inference endpoint, or persists quota snapshots. The resize preference is saved under `codex-usage.sidebarHeight` in DSH settings. Only normalized percentages, reset times, and allowance names reach the browser over DSH's authenticated Remote transport. Requests time out after 10 seconds and are aborted and awaited on unload. Redirects are rejected.
+The host resolves `OPENAI_CODEX_API_KEY` through DSH's existing credentials service and reads `https://chatgpt.com/backend-api/wham/usage`, scoped by the token's account claim. It never reads or writes refresh tokens, changes model settings, calls an inference endpoint, or persists quota snapshots. The resize preference is this plugin's own `sidebarHeight` settings field on profile entry `codex-usage`, stored with the profile's user settings. Only normalized percentages, reset times, and allowance names reach the browser over DSH's authenticated Remote transport. Requests time out after 10 seconds and are aborted and awaited on unload. Redirects are rejected.
 
 The response format follows [OpenAI Codex's backend client](https://github.com/openai/codex/blob/ac192cd7937b0d73edc6dffe009940ae53782dd4/codex-rs/backend-client/src/client.rs). This is an internal account endpoint and may change. Unsupported payloads display as unavailable.
 
